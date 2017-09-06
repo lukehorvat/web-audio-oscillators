@@ -1,0 +1,34 @@
+{
+  "name": "oscillators",
+  "version": "0.0.0",
+  "description": "Web Audio oscillators.",
+  "author": "Luke Horvat",
+  "license": "MIT",
+  "repository": "lukehorvat/oscillators",
+  "main": "dist",
+  "scripts": {
+    "build": "node_modules/.bin/babel lib -d dist -q",
+    "prebuild": "node_modules/.bin/rimraf dist",
+    "prepublish": "npm run build"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-preset-es2015": "6.24.1",
+    "babel-preset-stage-0": "6.24.1",
+    "rimraf": "2.5.4"
+  },
+  "keywords": [
+    "web",
+    "audio",
+    "api",
+    "oscillators",
+    "music"
+  ],
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-0"
+    ]
+  }
+}
