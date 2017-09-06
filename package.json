@@ -1,7 +1,7 @@
 {
   "name": "oscillators",
   "version": "0.0.0",
-  "description": "Web Audio oscillators.",
+  "description": "A collection of custom oscillators for use with the Web Audio API.",
   "author": "Luke Horvat",
   "license": "MIT",
   "repository": "lukehorvat/oscillators",
