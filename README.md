@@ -37,6 +37,7 @@ All oscillators provided by this package:
 - `organ2`
 - `organ3`
 - `organ4`
+- `organ5`
 - `bass`
 - `bass2`
 - `bass3`
