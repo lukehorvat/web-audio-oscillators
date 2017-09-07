@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: #333;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #oscillator-type-select {
+        min-width: 150px;
+        margin-bottom: 10px;
+      }
+
+      #keyboard {
+        min-width: 650px;
+        min-height: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      const oscillators = require("../dist").default;
+      const pkg = require("../package.json");
+      const QwertyHancock = require("qwerty-hancock");
+      const Reverb = require("soundbank-reverb");
+
+      let ctx = new (window.AudioContext || window.webkitAudioContext)();
+      let oscillator;
+
+      let oscillatorTypeSelect = document.createElement("select");
+      oscillatorTypeSelect.id = "oscillator-type-select";
+      Object.keys(oscillators).forEach(oscillatorType => {
+        let option = document.createElement("option");
+        option.value = option.text = oscillatorType;
+        oscillatorTypeSelect.appendChild(option);
+      });
+      document.body.appendChild(oscillatorTypeSelect);
+
+      let keyboardDiv = document.createElement("div");
+      keyboardDiv.id = "keyboard";
+      document.body.appendChild(keyboardDiv);
+
+      let keyboard = new QwertyHancock({
+         id: keyboardDiv.id,
+         octaves: 6,
+         startNote: "A1"
+      });
+      keyboard.keyDown = (note, frequency) => {
+        oscillator = oscillators[oscillatorTypeSelect.value](ctx);
+        oscillator.frequency.value = frequency;
+
+        let gain = ctx.createGain();
+        gain.gain.value = 0.2; // TODO: Control this with an input[type=range].
+
+        let reverb = Reverb(ctx);
+        reverb.time = 1;
+        reverb.wet.value = 0.8;
+        reverb.dry.value = 0.6;
+
+        oscillator.connect(gain).connect(reverb).connect(ctx.destination);
+        oscillator.start();
+      };
+      keyboard.keyUp = (note, frequency) => {
+        oscillator.stop();
+      };
+
+      document.title = `${pkg.name} (v${pkg.version})`;
+    </script>
+  </body>
+</html>
