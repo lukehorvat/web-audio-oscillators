@@ -1,6 +1,8 @@
 # web-audio-oscillators [![NPM version](http://img.shields.io/npm/v/web-audio-oscillators.svg?style=flat-square)](https://www.npmjs.org/package/web-audio-oscillators)
 
-A collection of custom oscillators for use with the [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API).
+A collection of [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API) custom oscillators.
+
+Are you after a nice organ or bass sound? Look no further!
 
 ## Installation
 
@@ -53,4 +55,4 @@ All oscillators provided by this package:
 
 ## Contributing
 
-Pull requests are most welcome. I'd like to expand this collection in order to cover more musical scenarios.
+Pull requests are most welcome. I'd like to expand this collection to cover more musical use cases!
