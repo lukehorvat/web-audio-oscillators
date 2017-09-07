@@ -1,10 +1,10 @@
 {
-  "name": "oscillators",
+  "name": "web-audio-oscillators",
   "version": "0.0.0",
   "description": "A collection of custom oscillators for use with the Web Audio API.",
   "author": "Luke Horvat",
   "license": "MIT",
-  "repository": "lukehorvat/oscillators",
+  "repository": "lukehorvat/web-audio-oscillators",
   "main": "dist",
   "scripts": {
     "build": "node_modules/.bin/babel lib -d dist -q",
@@ -25,6 +25,11 @@
     "audio",
     "api",
     "oscillators",
+    "oscillatornode",
+    "periodicwave",
+    "waveform",
+    "wavetable",
+    "fourier",
     "music"
   ],
   "babel": {

@@ -1,4 +1,4 @@
-# oscillators [![NPM version](http://img.shields.io/npm/v/oscillators.svg?style=flat-square)](https://www.npmjs.org/package/oscillators)
+# web-audio-oscillators [![NPM version](http://img.shields.io/npm/v/web-audio-oscillators.svg?style=flat-square)](https://www.npmjs.org/package/web-audio-oscillators)
 
 A collection of custom oscillators for use with the [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API).
 
@@ -7,7 +7,7 @@ A collection of custom oscillators for use with the [Web Audio API](https://deve
 Install the package with NPM:
 
 ```bash
-$ npm install oscillators
+$ npm install web-audio-oscillators
 ```
 
 ## Usage
@@ -15,7 +15,7 @@ $ npm install oscillators
 For example, to create an [OscillatorNode](https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode) that sounds like an organ:
 
 ```javascript
-import oscillators from "oscillators";
+import oscillators from "web-audio-oscillators";
 
 let context = new (window.AudioContext || window.webkitAudioContext)();
 let oscillator = oscillators.organ(context);
