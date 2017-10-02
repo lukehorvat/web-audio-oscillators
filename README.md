@@ -46,9 +46,9 @@ All oscillators provided by this package:
 - `bass4`
 - `brass`
 - `brass2`
-- `choirAah`
-- `choirOoh`
-- `choirEeh`
+- `aah`
+- `ooh`
+- `eeh`
 - `buzz`
 - `buzz2`
 - `dissonance`
