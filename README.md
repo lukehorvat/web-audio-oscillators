@@ -4,6 +4,8 @@ A collection of [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API
 
 Are you after a nice organ or bass sound? Look no further!
 
+An online demo of all oscillators included in this package can be found [here](https://oscillator.js.org).
+
 ## Installation
 
 Install the package with NPM:
