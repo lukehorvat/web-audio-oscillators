@@ -35,6 +35,9 @@
       const pkg = require("../package.json");
       const QwertyHancock = require("qwerty-hancock");
       const Reverb = require("soundbank-reverb");
+      const { remote } = require("electron");
+
+      remote.webContents.getFocusedWebContents().openDevTools();
 
       let ctx = new (window.AudioContext || window.webkitAudioContext)();
       let oscillator;
