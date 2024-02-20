@@ -39,23 +39,23 @@
 
       remote.webContents.getFocusedWebContents().openDevTools();
 
-      let ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const ctx = new AudioContext();
       let oscillator;
 
-      let oscillatorTypeSelect = document.createElement('select');
+      const oscillatorTypeSelect = document.createElement('select');
       oscillatorTypeSelect.id = 'oscillator-type-select';
       Object.keys(oscillators).forEach((oscillatorType) => {
-        let option = document.createElement('option');
+        const option = document.createElement('option');
         option.value = option.text = oscillatorType;
         oscillatorTypeSelect.appendChild(option);
       });
       document.body.appendChild(oscillatorTypeSelect);
 
-      let keyboardDiv = document.createElement('div');
+      const keyboardDiv = document.createElement('div');
       keyboardDiv.id = 'keyboard';
       document.body.appendChild(keyboardDiv);
 
-      let keyboard = new QwertyHancock({
+      const keyboard = new QwertyHancock({
         id: keyboardDiv.id,
         octaves: 6,
         startNote: 'A1',
@@ -64,10 +64,10 @@
         oscillator = oscillators[oscillatorTypeSelect.value](ctx);
         oscillator.frequency.value = frequency;
 
-        let gain = ctx.createGain();
+        const gain = ctx.createGain();
         gain.gain.value = 0.2; // TODO: Control this with an input[type=range].
 
-        let reverb = Reverb(ctx);
+        const reverb = Reverb(ctx);
         reverb.time = 1;
         reverb.wet.value = 0.8;
         reverb.dry.value = 0.6;

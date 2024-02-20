@@ -18,11 +18,11 @@ npm install web-audio-oscillators
 
 For example, to create an [OscillatorNode](https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode) that sounds like an organ:
 
-```javascript
+```js
 import oscillators from 'web-audio-oscillators';
 
-let context = new (window.AudioContext || window.webkitAudioContext)();
-let oscillator = oscillators.organ(context);
+const context = new AudioContext();
+const oscillator = oscillators.organ(context);
 oscillator.frequency.value = 220;
 oscillator.connect(context.destination);
 oscillator.start();

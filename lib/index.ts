@@ -55,7 +55,7 @@ export default Object.entries({
 }, {});
 
 function createOscillator({ real, imag }, ctx) {
-  let oscillator = ctx.createOscillator();
+  const oscillator = ctx.createOscillator();
   oscillator.setPeriodicWave(
     ctx.createPeriodicWave(Float32Array.from(real), Float32Array.from(imag))
   );
