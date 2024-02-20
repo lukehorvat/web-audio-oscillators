@@ -8,10 +8,10 @@ An online demo of all oscillators included in this package can be found [here](h
 
 ## Installation
 
-Install the package with NPM:
+Install the package via npm:
 
-```bash
-$ npm install web-audio-oscillators
+```sh
+npm install web-audio-oscillators
 ```
 
 ## Usage
@@ -19,7 +19,7 @@ $ npm install web-audio-oscillators
 For example, to create an [OscillatorNode](https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode) that sounds like an organ:
 
 ```javascript
-import oscillators from "web-audio-oscillators";
+import oscillators from 'web-audio-oscillators';
 
 let context = new (window.AudioContext || window.webkitAudioContext)();
 let oscillator = oscillators.organ(context);
