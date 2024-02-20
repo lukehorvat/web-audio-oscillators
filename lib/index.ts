@@ -1,12 +1,13 @@
-import * as sine from './sine';
-import * as square from './square';
-import * as sawtooth from './sawtooth';
-import * as triangle from './triangle';
-import * as chiptune from './chiptune';
-import * as organ from './organ';
-import * as organ2 from './organ2';
-import * as bass from './bass';
-import * as brass from './brass';
+import { WaveTable } from './wave-table';
+import { sine } from './sine';
+import { square } from './square';
+import { sawtooth } from './sawtooth';
+import { triangle } from './triangle';
+import { chiptune } from './chiptune';
+import { organ } from './organ';
+import { organ2 } from './organ2';
+import { bass } from './bass';
+import { brass } from './brass';
 import { DroppedSquare as square2 } from '@mohayonao/wave-tables';
 import { WarmTriangle as triangle2 } from '@mohayonao/wave-tables';
 import { Organ2 as organ3 } from '@mohayonao/wave-tables';
@@ -48,16 +49,22 @@ export default Object.entries({
   buzz,
   buzz2,
   dissonance,
-}).reduce((obj, [type, coefficients]) => {
+}).reduce((obj, [type, waveTable]) => {
   return Object.assign(obj, {
-    [type]: createOscillator.bind(null, coefficients),
+    [type]: createOscillator.bind(null, waveTable),
   });
 }, {});
 
-function createOscillator({ real, imag }, ctx) {
-  const oscillator = ctx.createOscillator();
+function createOscillator(
+  waveTable: WaveTable,
+  context: BaseAudioContext
+): OscillatorNode {
+  const oscillator = context.createOscillator();
   oscillator.setPeriodicWave(
-    ctx.createPeriodicWave(Float32Array.from(real), Float32Array.from(imag))
+    context.createPeriodicWave(
+      Float32Array.from(waveTable.real),
+      Float32Array.from(waveTable.imag)
+    )
   );
   return oscillator;
 }

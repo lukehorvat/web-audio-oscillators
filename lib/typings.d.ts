@@ -1,5 +1,5 @@
 declare module '@mohayonao/wave-tables' {
-  type WaveTable =
+  type WaveTableType =
     | 'Bass'
     | 'BassAmp360'
     | 'BassFuzz'
@@ -53,7 +53,10 @@ declare module '@mohayonao/wave-tables' {
     | 'Wurlitzer2';
 
   const waveTables: {
-    [T in WaveTable]: { real: number[]; imag: number[] };
+    [T in WaveTableType]: {
+      real: number[];
+      imag: number[];
+    };
   };
 
   export = waveTables;
