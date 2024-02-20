@@ -24,7 +24,7 @@ import { Buzzy1 as buzz } from '@mohayonao/wave-tables';
 import { DynaEPBright as buzz2 } from '@mohayonao/wave-tables';
 import { DissonantPiano as dissonance } from '@mohayonao/wave-tables';
 
-export default Object.entries({
+const waveTables = {
   sine,
   square,
   square2,
@@ -49,13 +49,26 @@ export default Object.entries({
   buzz,
   buzz2,
   dissonance,
-}).reduce((obj, [type, waveTable]) => {
-  return Object.assign(obj, {
-    [type]: createOscillator.bind(null, waveTable),
-  });
-}, {});
+};
 
-function createOscillator(
+export type CustomOscillatorType = keyof typeof waveTables;
+
+export type CustomOscillatorFactory = {
+  [T in CustomOscillatorType]: (context: BaseAudioContext) => OscillatorNode;
+};
+
+export const customOscillatorTypes = Object.keys(
+  waveTables
+) as CustomOscillatorType[];
+
+export const customOscillators: CustomOscillatorFactory =
+  customOscillatorTypes.reduce((obj, type) => {
+    return Object.assign(obj, {
+      [type]: createCustomOscillator.bind(null, waveTables[type]),
+    });
+  }, {} as CustomOscillatorFactory);
+
+function createCustomOscillator(
   waveTable: WaveTable,
   context: BaseAudioContext
 ): OscillatorNode {
