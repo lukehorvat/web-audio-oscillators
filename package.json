@@ -1,6 +1,6 @@
 {
   "name": "web-audio-oscillators",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "description": "A collection of Web Audio API custom oscillators.",
   "author": "Luke Horvat",
   "license": "MIT",
