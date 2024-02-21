@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>web-audio-oscillators</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
@@ -29,57 +30,5 @@
       }
     </style>
   </head>
-  <body>
-    <script>
-      const oscillators = require('../dist').default;
-      const pkg = require('../package.json');
-      const QwertyHancock = require('qwerty-hancock');
-      const Reverb = require('soundbank-reverb');
-      const { remote } = require('electron');
-
-      remote.webContents.getFocusedWebContents().openDevTools();
-
-      const ctx = new AudioContext();
-      let oscillator;
-
-      const oscillatorTypeSelect = document.createElement('select');
-      oscillatorTypeSelect.id = 'oscillator-type-select';
-      Object.keys(oscillators).forEach((oscillatorType) => {
-        const option = document.createElement('option');
-        option.value = option.text = oscillatorType;
-        oscillatorTypeSelect.appendChild(option);
-      });
-      document.body.appendChild(oscillatorTypeSelect);
-
-      const keyboardDiv = document.createElement('div');
-      keyboardDiv.id = 'keyboard';
-      document.body.appendChild(keyboardDiv);
-
-      const keyboard = new QwertyHancock({
-        id: keyboardDiv.id,
-        octaves: 6,
-        startNote: 'A1',
-      });
-      keyboard.keyDown = (note, frequency) => {
-        oscillator = oscillators[oscillatorTypeSelect.value](ctx);
-        oscillator.frequency.value = frequency;
-
-        const gain = ctx.createGain();
-        gain.gain.value = 0.2; // TODO: Control this with an input[type=range].
-
-        const reverb = Reverb(ctx);
-        reverb.time = 1;
-        reverb.wet.value = 0.8;
-        reverb.dry.value = 0.6;
-
-        oscillator.connect(gain).connect(reverb).connect(ctx.destination);
-        oscillator.start();
-      };
-      keyboard.keyUp = (note, frequency) => {
-        oscillator.stop();
-      };
-
-      document.title = `${pkg.name} (v${pkg.version})`;
-    </script>
-  </body>
+  <body></body>
 </html>
