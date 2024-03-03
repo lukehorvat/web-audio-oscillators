@@ -1,9 +1,13 @@
-import { customOscillatorTypes, customOscillators } from '../';
+import {
+  CustomOscillatorType,
+  customOscillatorTypes,
+  customOscillators,
+} from '../lib';
 import Reverb from 'soundbank-reverb';
 import QwertyHancock from 'qwerty-hancock';
 
 const context = new AudioContext();
-let oscillator;
+let oscillator: OscillatorNode;
 
 const oscillatorTypeSelect = document.createElement('select');
 oscillatorTypeSelect.id = 'oscillator-type-select';
@@ -24,7 +28,8 @@ const keyboard = new QwertyHancock({
   startNote: 'A1',
 });
 keyboard.keyDown = (note, frequency) => {
-  oscillator = customOscillators[oscillatorTypeSelect.value](context);
+  const oscillatorType = oscillatorTypeSelect.value as CustomOscillatorType;
+  oscillator = customOscillators[oscillatorType](context);
   oscillator.frequency.value = frequency;
 
   const gain = context.createGain();

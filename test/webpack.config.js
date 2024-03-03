@@ -12,7 +12,22 @@ module.exports = {
       logging: 'warn',
     },
   },
-  entry: path.join(__dirname, 'index.js'),
+  entry: path.join(__dirname, 'index.ts'),
+  resolve: {
+    extensions: ['.ts', '...'],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/,
+        options: {
+          onlyCompileBundledFiles: true,
+        },
+      },
+    ],
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'index.html'),
