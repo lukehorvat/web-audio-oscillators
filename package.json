@@ -13,7 +13,7 @@
   "scripts": {
     "build": "tsc",
     "prebuild": "rimraf dist",
-    "test": "webpack serve --mode development --config ./test/webpack.config.js"
+    "test": "webpack serve --mode development --config ./test/webpack.config.mjs"
   },
   "dependencies": {
     "@mohayonao/wave-tables": "^0.2.0"
